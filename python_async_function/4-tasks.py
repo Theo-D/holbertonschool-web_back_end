@@ -17,7 +17,8 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
         ).task_wait_random
     delay_list: List[float] = []
 
-    tasks: List[Awaitable[float]] = [task_wait_random(max_delay) for _ in range(n)]
+    tasks: List[Awaitable[float]] = [task_wait_random(max_delay)
+                                     for _ in range(n)]
 
     for task in as_completed(tasks):
         delay: float = await task
