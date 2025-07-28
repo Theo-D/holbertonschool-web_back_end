@@ -6,7 +6,7 @@ from asyncio import gather
 from time import perf_counter
 
 
-async def measure_runtime():
+async def measure_runtime() -> float:
     """
     A coroutine that will execute `async_comprehension` 4 times,
     measure the total runtime and return it.
