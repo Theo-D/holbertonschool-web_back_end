@@ -5,7 +5,7 @@
 from typing import AsyncGenerator, Callable, List
 
 
-async def async_comprehensionr() -> List[float]:
+async def async_comprehension() -> List[float]:
     """
     A coroutine that will collect 10 random numbers using an async
     comprehensing over async_generator, then return the 10 random numbers.
