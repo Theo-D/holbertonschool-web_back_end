@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
 """
-sum_list: A type-annotated function sum_list which takes a list input_list
- of floats as argument and returns their sum as a float.
+5-sum_list.py: Contains sum_list()
 """
 
 
 def sum_list(input_list: list[float]) -> float:
+    """
+    A type-annotated function sum_list which takes a list input_list
+    of floats as argument and returns their sum as a float.
+    """
     float_sum: float = 0
     for num in input_list:
         float_sum += num
