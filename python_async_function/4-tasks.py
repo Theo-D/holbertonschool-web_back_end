@@ -6,7 +6,7 @@ from typing import List, Awaitable, Callable
 from asyncio import as_completed
 
 
-async def task_wait_n(n: int, max_delay: int) -> List[float]:
+async def task_wait_n(n: int, max_delay: int = 10) -> List[float]:
     """
     A function that return the list of all the delays (float values).
     The list of the delays should be in ascending order without using
