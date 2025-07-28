@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """
 to_kv: A  type-annotated function to_kv that takes a string k and

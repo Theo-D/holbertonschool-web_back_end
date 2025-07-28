@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """
 to_str: A type-annotated function to_str that takes a float n as
