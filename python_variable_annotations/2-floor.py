@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
+"""
+2-floor.py: contains definition of floor().
+"""
 import math
-
-"""
-2-floor.py: contains floor()
-"""
 
 
 def floor(n: float) -> int:
