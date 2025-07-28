@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 4-define_variables.py: Define and annotate variables with specific values.
 """

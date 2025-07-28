@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from typing import Callable
-
 """
 8-make_multiplier.py: Contains make_multiplier()
 """
+
+from typing import Callable
 
 
 def make_multiplier(mutiplier: float) -> Callable[[float], float]:

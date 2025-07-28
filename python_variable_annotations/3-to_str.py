@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 3-to_str.py: Contains to_str().
 """
