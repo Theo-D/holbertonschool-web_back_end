@@ -14,7 +14,6 @@ def measure_time(n: int, max_delay: int) -> float:
     wait_n: Callable[[int, int], Awaitable[float]] = __import__(
         '1-concurrent_coroutines'
         ).wait_n
-
     start: float = time.perf_counter()
     wait_n(n, max_delay)
     total: float = time.perf_counter() - start
