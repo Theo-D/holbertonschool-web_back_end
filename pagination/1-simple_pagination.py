@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 import csv
 import math
-from typing import List
+from typing import List, Tuple
 """
 1-simple_pagination.py -
 """
 
 
-def index_range(page: int, page_size: int):
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     index_range: receives two pos ints and calculates corresponding
     start and end indexes returned as a tuples
@@ -18,7 +18,7 @@ def index_range(page: int, page_size: int):
 
         tuple_range = (start_index, end_index)
 
-        return tuple_range
+    return tuple_range
 
 
 class Server:
@@ -41,7 +41,7 @@ class Server:
 
         return self.__dataset
 
-    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_page(self, page: int = 1, page_size: int = 10) -> List[List[str]]:
         """
         get_page : Paginates the content of a dataset with start and end index
         and returns the paginated list of rows.
