@@ -53,7 +53,7 @@ class Server:
         data_list: List[list] = self.dataset()
         index_tuple = index_range(page, page_size)
 
-        if (index_tuple[1] > len(data_list)):
+        if (index_tuple[1] >= len(data_list)):
             data_list = []
             return data_list
 
