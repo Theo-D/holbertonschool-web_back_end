@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 """
-11-school_by_topics.py -
+10-update_topics.py
+Module containing the function update_topics.
 """
 
-from typing import List, Dict, Any
-from pymongo.collection import Collection
 
-
-def schools_by_topic(mongo_collection: Collection,
-                     topic: str) -> List[Dict[str, Any]]:
+def update_topics(mongo_collection, name, topics):
     """
-    Return a list of schools that have the given topic in their topics list.
+    Changes all topics of a school based on the name.
     """
-    return list(mongo_collection.find({"topics": topic}))
+    document = {'name': name}
+    values = {'$set': {'topics': [topic for topic in topics]}}
+    mongo_collection.update_many(document, values)
