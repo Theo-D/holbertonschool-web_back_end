@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-10-update_topics.py
-Module containing the function update_topics.
+11-schools_by_topic.py
+Module containing the function schools_by_topics.
 """
 
 
-def update_topics(mongo_collection, name, topics):
+def schools_by_topic(mongo_collection, topic):
     """
-    Changes all topics of a school based on the name.
+    Finds all schools having a specific topic.
     """
-    document = {'name': name}
-    values = {'$set': {'topics': [topic for topic in topics]}}
-    mongo_collection.update_many(document, values)
+    cursor = mongo_collection.find({'topics': topic})
+    return cursor

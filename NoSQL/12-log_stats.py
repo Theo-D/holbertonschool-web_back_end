@@ -24,17 +24,22 @@ def main() -> None:
     client = MongoClient('mongodb://127.0.0.1:27017')
     nginx_collection: Collection = client.logs.nginx
 
-    total_logs = len(list(nginx_collection.find()))
-    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-
-    print(f"{total_logs} logs")
-    print("Methods:")
-    for method in methods:
-        count = count_documents_by_find(nginx_collection, {"method": method})
-        print(f"\tmethod {method}: {count}")
-
+    total_logs = count_documents_by_find(nginx_collection, {})
+    get_count = count_documents_by_find(nginx_collection, {"method": "GET"})
+    post_count = count_documents_by_find(nginx_collection, {"method": "POST"})
+    put_count = count_documents_by_find(nginx_collection, {"method": "PUT"})
+    patch_count = count_documents_by_find(nginx_collection, {"method": "PATCH"})
+    delete_count = count_documents_by_find(nginx_collection, {"method": "DELETE"})
     status_count = count_documents_by_find(nginx_collection, {"path": "/status"})
-    print(f"{status_count} status check")
+
+    print('{} logs'.format(total_logs))
+    print('Methods:')
+    print('\tmethod GET: {}'.format(get_count))
+    print('\tmethod POST: {}'.format(post_count))
+    print('\tmethod PUT: {}'.format(put_count))
+    print('\tmethod PATCH: {}'.format(patch_count))
+    print('\tmethod DELETE: {}'.format(delete_count))
+    print('{} status check'.format(status_count))
 
 
 if __name__ == "__main__":
