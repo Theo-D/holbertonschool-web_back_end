@@ -40,30 +40,47 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int, page_size: int = 10) -> Dict:
-        data_dict: Dict = self.indexed_dataset()
-        data_list = []
-        item_count = len(self.dataset())
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """
+        Get a deletion-resilient page of the dataset starting from a given index.
+
+        Args:
+            index (int): The starting index for pagination. Can be None.
+            page_size (int): The number of items to include in the page.
+
+        Returns:
+            Dict: A dictionary containing:
+                - index: the current start index
+                - next_index: the index to query next
+                - page_size: actual number of items returned
+                - data: the page data
+        """
+        dataset = self.indexed_dataset()
+
+        assert isinstance(index, int) and index >= 0
+        assert isinstance(page_size, int) and page_size > 0
+
+        data = []
+        max_index = max(dataset.keys())
         curr_index = index
-        valid_index = 0
-        max_index = max(data_dict.keys())
+        found = 0
 
-        assert index + page_size < item_count
-
-        while valid_index < page_size and curr_index <= max_index:
-            if curr_index in data_dict:
-                data_list.append(data_dict[curr_index])
-                valid_index += 1
+        while found < page_size and curr_index <= max_index:
+            if curr_index in dataset:
+                data.append(dataset[curr_index])
+                found += 1
             curr_index += 1
 
-        if (curr_index <= max_index):
-            next_index = curr_index
-        else:
-            next_index = None
+        next_index = None
+        while curr_index <= max_index:
+            if curr_index in dataset:
+                next_index = curr_index
+                break
+            curr_index += 1
 
         return {
-            'index': index,
-            'data': data_list,
-            'page_size': len(data_list),
-            'next_index': next_index
+            "index": index,
+            "next_index": next_index,
+            "page_size": len(data),
+            "data": data
         }
