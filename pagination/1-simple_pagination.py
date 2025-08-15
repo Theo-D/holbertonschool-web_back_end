@@ -65,10 +65,4 @@ class Server:
         data = self.dataset()
         start, end = index_range(page, page_size)
 
-        results: List[List[str]] = []
-
-        if start < len(data) and end < len(data):
-            for i in range(end - start):
-                results.append(data[start + i + 1])
-
-        return results
+        return data[start:end]
