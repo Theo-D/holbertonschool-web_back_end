@@ -1,18 +1,18 @@
 export default class HolbertonCourse {
 
     constructor(name, length, students) {
-        if (typeof name != String) {
-            throw new TypeError("Name must be a string");
+        if (typeof name !== 'string') {
+            throw TypeError("Name must be a string");
         }
-        if (typeof length != Number) {
-            throw new TypeError("Length must be a number");
+        if (typeof length !== 'number') {
+            throw TypeError("Length must be a number");
         }
         if (!Array.isArray(students)) {
-            throw new TypeError("Students must be an array");
+            throw TypeError("Students must be an array");
         }
         for (const student in students) {
-            if (typeof student != String) {
-                throw new TypeError("Students must contain string elements");
+            if (typeof student !== 'string') {
+                throw TypeError("Students must contain string elements");
             }
         }
 
@@ -27,8 +27,8 @@ export default class HolbertonCourse {
     }
 
     set name(newName) {
-        if (typeof newName != String) {
-            throw new TypeError("Name must be a string");
+        if (typeof newName !== 'string') {
+            throw TypeError("Name must be a string");
         }
         this._name = newName;
     }
@@ -40,8 +40,8 @@ export default class HolbertonCourse {
     }
 
     set length(newLength) {
-        if (typeof newLength != Number) {
-            throw new TypeError("Length must be a number");
+        if (typeof newLength !== 'number') {
+            throw TypeError("Length must be a number");
         }
         this._length = newLength;
     }
@@ -54,11 +54,11 @@ export default class HolbertonCourse {
 
     set students(newStudents) {
         if (!Array.isArray(newStudents)) {
-            throw new TypeError("Students must be an array");
+            throw TypeError("Students must be an array");
         }
         for (const elm in newStudents) {
-            if (typeof elm != String) {
-                throw new TypeError("Students must contain string elements");
+            if (typeof elm !== 'string') {
+                throw TypeError("Students must contain string elements");
             }
         }
         this._students = newStudents;
