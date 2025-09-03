@@ -1,44 +1,43 @@
-module.exports = async function countStudents (path) {
-  const fs = require('node:fs/promises');
+const fs = require('node:fs/promises');
+
+async function countStudents(path) {
+  let output = '';
+  let data = '';
 
   try {
-    const data = await fs.readFile(path, {encoding: 'utf8'});
+    data = fs.readFileAsync(path, 'utf8');
+  } catch (err) {
+    throw new Error('Cannot load the database');
+  }
 
-    const dataArr = data.split('\n');
-    const studentArr = dataArr.filter(elm => elm !== dataArr[0] && elm !== '');
-    const studentKeys = dataArr[0].split(',');
+  const dataArr = data.split('\n');
+  const studentArr = dataArr.filter((elm) => elm !== dataArr[0] && elm !== '');
+  const studentKeys = dataArr[0].split(',');
 
+  const studentDict = studentArr.map((line) => {
+    const object = line.split(',');
+    return Object.fromEntries(
+      studentKeys.map((key, index) => [key, object[index]]),
+    );
+  });
 
-    const studentDict = studentArr
-    .map(line => {
-      const object = line.split(',');
-      return studentKeys.reduce((obj, h, i) => {
-        obj[h] = object[i];
-        return obj;
-      }, {});
-    });
-
-    const byField = studentDict.reduce((accumulator, student) => {
-      const field = student.field;
-      const firstname = student.firstname;
-      if(!accumulator[field]) {
-        accumulator[field] = [];
-      }
-      accumulator[field].push(firstname);
-      return accumulator;
-    }, {});
-
-    let output = `Number of students: ${studentArr.length}`;
-    for (const [key, value] of Object.entries(byField)) {
-      output += `\nNumber of students in ${key}: ${value.length}. List: ${value.join(', ')}`;
+  const byField = studentDict.reduce((accumulator, student) => {
+    const { field } = student;
+    const { firstname } = student;
+    if (!accumulator[field]) {
+      accumulator[field] = [];
     }
+    accumulator[field].push(firstname);
+    return accumulator;
+  }, {});
 
-    console.log(output);
+  output = `Number of students: ${studentArr.length}`;
+  for (const [key, value] of Object.entries(byField)) {
+    output += `\nNumber of students in ${key}: ${value.length}. List: ${value.join(', ')}`;
+  }
 
-    return output;
-  }
-  catch (err) {
-    console.error('Error: Cannot load the database');
-    console.error(err);
-  }
+  console.log(output);
+  return output;
 }
+
+module.exports = countStudents;
