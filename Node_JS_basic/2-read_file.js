@@ -14,10 +14,9 @@ function countStudents(path) {
 
   const studentDict = studentArr.map((line) => {
     const object = line.split(',');
-    return studentKeys.reduce((accumulator, key, index) => ({
-      ...accumulator,
-      [key]: object[index],
-    }), {});
+    return Object.fromEntries(
+      studentKeys.map((key, index) => [key, object[index]])
+    );
   });
 
   const byField = studentDict.reduce((accumulator, student) => {
