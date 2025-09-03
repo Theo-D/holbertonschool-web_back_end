@@ -5,7 +5,7 @@ async function countStudents(path) {
   let data = '';
 
   try {
-    data = fs.readFileAsync(path, 'utf8');
+    data = await fs.readFile(path, {encoding: 'utf8'});
   } catch (err) {
     throw new Error('Cannot load the database');
   }
