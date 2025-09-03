@@ -7,7 +7,6 @@ const app = createServer(async (req, res) => {
 
   if (req.url === '/' && req.method === 'GET') {
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
 
     return;
@@ -17,7 +16,6 @@ const app = createServer(async (req, res) => {
     try {
       const output = await countStudents("database.csv");
       res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
       res.end(`This is the list of our students\n${output}`);
     } catch (err) {
       res.statusCode = 404;
