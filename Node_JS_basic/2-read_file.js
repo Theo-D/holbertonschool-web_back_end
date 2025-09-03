@@ -1,4 +1,4 @@
-module.exports = function countStudents (path) {
+function countStudents(path) {
   const fs = require('node:fs');
 
   fs.readFile(path, 'utf8', (err, data) => {
@@ -41,3 +41,5 @@ module.exports = function countStudents (path) {
   });
 
 }
+
+module.exports = countStudents;

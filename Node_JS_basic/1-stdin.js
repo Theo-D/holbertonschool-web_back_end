@@ -15,7 +15,3 @@ function main() {
     process.stdout.write('This important software is now closing' + '\n');
   });
 }
-
-if (require.main === module) {
-  main();
-}
