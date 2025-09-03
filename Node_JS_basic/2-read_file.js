@@ -1,10 +1,11 @@
 function countStudents(path) {
   const fs = require('node:fs');
 
-  fs.readFile(path, 'utf8', (err, data) => {
-    if (err) {
-      throw new Error('Cannot load the database');
-    }
+  try {
+    data = fs.readFileSync(path, 'utf8');
+  } catch (err) {
+    throw new Error('Cannot load the database');
+  }
 
     const dataArr = data.split('\n');
     const studentArr = dataArr.filter(elm => elm !== dataArr[0] && elm !== '');
@@ -35,8 +36,6 @@ function countStudents(path) {
     for (const [key, value] of Object.entries(byField)) {
       console.log(`Number of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
     }
-  });
-
-}
+  };
 
 module.exports = countStudents;
