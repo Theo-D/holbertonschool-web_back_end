@@ -11,6 +11,7 @@ const app = createServer((req, res) => {
   if (req.url === '/' && req.method === 'GET') {
     res.statusCode = 200;
     res.end('Hello Holberton School!');
+    return;
   }
 
   if (req.url === '/students' && req.method === 'GET') {
@@ -23,6 +24,7 @@ const app = createServer((req, res) => {
         res.statusCode = 404;
         res.end('Cannot load the database');
       });
+    return;
   }
 
   res.statusCode = 404;
