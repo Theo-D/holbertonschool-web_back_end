@@ -15,8 +15,8 @@ const app = createServer(async (req, res) => {
 
   if (req.url === '/students' && req.method === 'GET') {
     try {
-      const output = await countStudents(db);
       res.statusCode = 200;
+      const output = await countStudents(db);
       res.end(`This is the list of our students\n${output}`);
     } catch (err) {
       res.statusCode = 404;
