@@ -4,17 +4,16 @@ const countStudents = require('./3-read_file_async');
 const hostname = '127.0.0.1';
 const port = 1245;
 const app = createServer(async (req, res) => {
-
-  if (req.url === '/' && req.method === 'GET') {
+  if (req.url === '/') {
     res.statusCode = 200;
     res.end('Hello Holberton School!');
 
     return;
   }
 
-  if (req.url === '/students' && req.method === 'GET') {
+  if (req.url === '/students') {
     try {
-      const output = await countStudents("database.csv");
+      const output = await countStudents('database.csv');
       res.statusCode = 200;
       res.end(`This is the list of our students\n${output}`);
     } catch (err) {
@@ -27,7 +26,6 @@ const app = createServer(async (req, res) => {
 
   res.statusCode = 404;
   res.end('Not Found');
-
 });
 
 app.listen(port, hostname, () => {
