@@ -17,7 +17,7 @@ const app = createServer(async (req, res) => {
     try {
       const output = await countStudents(db);
       res.statusCode = 200;
-      res.write(`This is the list of our students\n${output}`);
+      res.end(`This is the list of our students\n${output}`);
     } catch (err) {
       res.statusCode = 404;
       res.end('Cannot load the database');
