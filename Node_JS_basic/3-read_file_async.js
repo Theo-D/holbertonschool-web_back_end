@@ -8,7 +8,7 @@ function countStudents(path) {
         return;
       }
 
-      let output = '';
+      const output = '';
       const dataArr = data.split('\n');
       const header = dataArr[0];
       const studentArr = dataArr.slice(1).filter((line) => line.trim() !== '');
