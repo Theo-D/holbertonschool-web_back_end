@@ -2,7 +2,7 @@ import readDatabase from '../utils.js';
 
 export default class StudentsController {
   static async getAllStudents (request, response) {
-
+    const dbPath = process.argv[2];
     let studentsByField = '';
 
     try {
