@@ -22,26 +22,16 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-console': 'off',
     'no-shadow': 'off',
-    'import/extensions': ['error', 'ignorePackages', {
-      js: 'always',
-    }],
     'no-restricted-syntax': [
       'error',
       'LabeledStatement',
       'WithStatement',
     ],
   },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js'],
-      },
-    },
-  },
-  overrides: [
+  overrides:[
     {
       files: ['*.js'],
       excludedFiles: 'babel.config.js',
-    },
-  ],
+    }
+  ]
 };
