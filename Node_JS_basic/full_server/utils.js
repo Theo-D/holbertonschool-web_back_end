@@ -29,7 +29,14 @@ export default function readDatabase (dbPath) {
                 return acc;
               }, {});
 
-              resolve(byField);
+              const orderedFields = Object.keys(byField)
+              .sort()
+              .reduce((obj, key) => {
+                obj[key] = byField[key];
+                return obj;
+              }, {});
+
+              resolve(orderedFields);
         });
     });
 }
